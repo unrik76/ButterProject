@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterMovement : MonoBehaviour
+public class CharacterMovementRefference : MonoBehaviour
 {
     [Header("Movement")]
     public float moveSpeed;
@@ -38,7 +38,6 @@ public class CharacterMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rb.freezeRotation = true;
         readyToJump = true;
     }
 
