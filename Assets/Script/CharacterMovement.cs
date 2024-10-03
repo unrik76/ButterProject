@@ -25,10 +25,14 @@ public class CharacterMovement : MonoBehaviour
     [Header("Parameters")]
     [SerializeField] public LayerMask whatIsGround;
     [SerializeField] public Transform orientation;
+    [SerializeField] public GameObject playerBody;
+    [SerializeField] public PhysicMaterial playerPhysicsMaterial;
+    [SerializeField] public PhysicMaterial playerPhysicsCrouch;
     Vector3 moveDirection;
     float horizontalInput;
     float verticalInput;
     Rigidbody rb;
+
 
     void Start()
     {
@@ -56,23 +60,29 @@ public class CharacterMovement : MonoBehaviour
         if(Input.GetButtonDown("Jump") && jumpCount > 0){
         Jump();}
         if(Input.GetButtonUp("Jump") && rb.velocity.y > 0f){
-            rb.velocity = new Vector3(rb.velocity.x,rb.velocity.y* 0.5f,rb.velocity.z);
+            rb.velocity = new Vector3(rb.velocity.x,rb.velocity.y * 0.5f,rb.velocity.z);
         }
     }
     void MovePlayer(){
         moveDirection = orientation.forward * Input.GetAxisRaw("Vertical") + orientation.right * Input.GetAxisRaw("Horizontal");
- //       Vector3 PlayerSpeed = new Vector3(rb.velocity.x,0f,rb.velocity.z);
         Vector3 PlayerSpeed = new Vector3(rb.velocity.x,rb.velocity.y,rb.velocity.z);
-        print(Input.GetAxis("Accelerate"));
+        print(PlayerSpeed.magnitude);
         if(Input.GetAxis("Accelerate") <= 0.5f){
-                SpeedController(movementBoost, PlayerSpeed, movementThreshold);
+                SpeedController(1, PlayerSpeed, movementThreshold);
             }else{
                 SpeedController(movementBoost, PlayerSpeed, movementThreshold*2);
             }
+        if(Input.GetButton("Crouch")){
+            print("Kucanie");
+            playerBody.GetComponent<BoxCollider>().material = playerPhysicsCrouch;
+        }else{
+            playerBody.GetComponent<BoxCollider>().material = playerPhysicsMaterial;
+        }
     }
     void SpeedController(float speedMult, Vector3 Speed,float max){
-        if(Speed.magnitude < max)
-            rb.AddForce(moveDirection.normalized * movementAcceleration * 10f, ForceMode.Force);     
+        if(Speed.magnitude < max){
+            rb.AddForce(moveDirection.normalized * movementAcceleration * 10f * speedMult, ForceMode.Force);
+        }     
     }
     public void Jump(){
         print("player jumped");
