@@ -68,6 +68,8 @@ public class CharacterMovementV3 : MonoBehaviour
     private float player_top_speed;
     private float player_current_acceleration;
     Vector3 player_current_speed;
+    float horizontalInput;
+    float verticalInput;
 
     public player_movement_state state;
     public enum player_movement_state{
@@ -87,7 +89,7 @@ public class CharacterMovementV3 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        is_grounded = Physics.Raycast(transform.position, Vector3.down,0.5f,define_ground);
+        is_grounded = Physics.Raycast(transform.position, Vector3.down,0.2f,define_ground);
         if (is_grounded){jumpCount = player_jump_amount;}
 
         speedControl();
@@ -144,8 +146,11 @@ public class CharacterMovementV3 : MonoBehaviour
     void movePlayer()
     {
         moveDirection = player_orientation.forward * vertical_input + player_orientation.right * horizontal_input;
-        rb.AddForce(moveDirection.normalized * player_current_acceleration * 10f, ForceMode.Force);
-
+        if(OnSlope()){
+            rb.AddForce(GetSlopeMoveDirection() * player_current_acceleration * 10f, ForceMode.Force);
+        }else{
+            rb.AddForce(moveDirection.normalized * player_current_acceleration * 10f, ForceMode.Force);
+        }
         player_current_speed = new Vector3(rb.velocity.x, 0f,rb.velocity.z);
 
     }
@@ -168,7 +173,6 @@ public class CharacterMovementV3 : MonoBehaviour
     {
         if(Physics.Raycast(transform.position, Vector3.down, out slope_was_hit, 0.5f))
         {
-             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * slope_was_hit.distance, Color.yellow);
             float angle = Vector3.Angle(Vector3.up, slope_was_hit.normal);
             return angle < maximum_angle_slope && angle != 0;
         }

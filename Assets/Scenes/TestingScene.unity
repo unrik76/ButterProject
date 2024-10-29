@@ -7017,6 +7017,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6279794239435076798, guid: 7b34a80e49131d349916ebf2a2a30837, type: 3}
+      propertyPath: playerPhysicsCrouch
+      value: 
+      objectReference: {fileID: 13400000, guid: a74eb0dfebdee8b48ba507eeeb944cc3, type: 2}
+    - target: {fileID: 6279794239435076798, guid: 7b34a80e49131d349916ebf2a2a30837, type: 3}
+      propertyPath: playerPhysicsMaterial
+      value: 
+      objectReference: {fileID: 13400000, guid: 442b019d117049241be4531066b5717c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
