@@ -160,6 +160,7 @@ GameObject:
   - component: {fileID: 5123806403508927969}
   - component: {fileID: 7646507800938807268}
   - component: {fileID: 2220778273559541590}
+  - component: {fileID: 8500434794065950239}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Untagged
@@ -175,7 +176,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3964173343510611703}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.15, z: 0.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -228,17 +229,35 @@ MonoBehaviour:
   player_crouch_speed: 5
   player_default_acceleration: 2
   use_sprint_acceleration: 1
-  player_sprint_acceleration: 4
+  player_sprint_acceleration: 6
   player_jump_amount: 2
-  player_jump_force: 5
+  player_jump_force: 10
   is_grounded: 0
   define_ground:
     serializedVersion: 2
     m_Bits: 8
   player_orientation: {fileID: 2065917568068950161}
   player_object: {fileID: 3250853597953451976}
-  maximum_angle_slope: 0
+  maximum_angle_slope: 75
   state: 0
+--- !u!114 &8500434794065950239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3964173343510611703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec2a037664b70db4e8f86f070dc3ae0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHealth: 10
+  CurrentHealth: 0
+  HealthBar: {fileID: 0}
+  InvulnerableTime: 2
+  Invulnerable: 0
+  InvulnerableTimeDelta: 0
 --- !u!1 &6638404210003691466
 GameObject:
   m_ObjectHideFlags: 0

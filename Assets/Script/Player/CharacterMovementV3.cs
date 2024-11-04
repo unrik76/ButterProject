@@ -95,8 +95,8 @@ public class CharacterMovementV3 : MonoBehaviour
         speedControl();
         PlayerInput();
         playerStateHandler();
-
-        print(player_current_speed.magnitude);
+    
+        //print(player_current_speed.magnitude);
     }
 
     private void FixedUpdate() {
