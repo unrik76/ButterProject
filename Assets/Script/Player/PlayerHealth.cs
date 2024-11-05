@@ -11,6 +11,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] float InvulnerableTime;
     [SerializeField] bool Invulnerable;
     public float InvulnerableTimeDelta;
+    [SerializeField] Transform RespawnPoint;
     void Start()
     {
         CurrentHealth = MaxHealth;
@@ -23,14 +24,46 @@ public class PlayerHealth : MonoBehaviour
         if (InvulnerableTimeDelta <= Time.time){
             Invulnerable = false;
         }
-        print(Time.time);
+        if (CurrentHealth <= 0){
+            DeathSequance();
+        }
     }
     private void OnCollisionEnter(Collision other){
-        if (other.gameObject.GetComponent<DealDamage>() != null && Invulnerable != true){
-            CurrentHealth -= other.gameObject.GetComponent<DealDamage>().Damage;
-            Invulnerable = true;
-            InvulnerableTimeDelta = Time.time + InvulnerableTime;
-            print("Player got hit for " + other.gameObject.GetComponent<DealDamage>().Damage + "");
+        /* Handeling of character taking damage, triggering invulnerability */
+        if (other.gameObject.GetComponent<DealDamage>() != null){
+            /* If player isn't invulnerable and the object that he's colliding with isn't marked to instakill
+                take damage equal to other object assigned damage */
+            if(Invulnerable != true && other.gameObject.GetComponent<DealDamage>().InstaKill != true && other.gameObject.GetComponent<DealDamage>().IgnoreImmunity != true){
+                CurrentHealth -= other.gameObject.GetComponent<DealDamage>().Damage;
+                Invulnerable = true;
+                InvulnerableTimeDelta = Time.time + InvulnerableTime;
+            }
+            /* If object that player is colliding with is marked to ignore invulnerability
+                take damage equal to other object assigned damage */
+            else if(other.gameObject.GetComponent<DealDamage>().IgnoreImmunity == true){
+                CurrentHealth -= other.gameObject.GetComponent<DealDamage>().Damage;
+                Invulnerable = true;
+                InvulnerableTimeDelta = Time.time + InvulnerableTime / 10;
+            }
+            /* If object that player is coliding with is marked to instantly kill
+                start death sequence */
+            else if(other.gameObject.GetComponent<DealDamage>().InstaKill == true){
+                DeathSequance();
+            }else{
+
+            }
+            
         }
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        if (other.gameObject.GetComponent<SavePoint>() != null){
+            RespawnPoint = other.gameObject.GetComponent<SavePoint>().thisTransform;
+        }
+    }
+
+    public void DeathSequance(){
+        transform.position = RespawnPoint.position;
+        CurrentHealth = MaxHealth;
     }
 }

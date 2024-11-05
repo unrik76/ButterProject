@@ -5,5 +5,6 @@ using UnityEngine;
 public class DealDamage : MonoBehaviour
 {
     [SerializeField] public float Damage;
-    [SerializeField] bool Constatn;
+    [SerializeField] public bool IgnoreImmunity;
+    [SerializeField] public bool InstaKill;
 }
