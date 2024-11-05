@@ -89,6 +89,10 @@ PrefabInstance:
       propertyPath: HealthBar
       value: 
       objectReference: {fileID: 5924025021508429794}
+    - target: {fileID: 8500434794065950239, guid: b864e33932a96164fae6214c6c42e78f, type: 3}
+      propertyPath: RespawnPoint
+      value: 
+      objectReference: {fileID: 3262880199952417353}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

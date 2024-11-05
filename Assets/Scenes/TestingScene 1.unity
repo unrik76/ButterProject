@@ -1159,11 +1159,6 @@ MonoBehaviour:
   Damage: 1
   IgnoreImmunity: 0
   InstaKill: 0
---- !u!4 &454833374 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3262880199952417353, guid: 7b95baf49a797d7468da1ea62624b4c1, type: 3}
-  m_PrefabInstance: {fileID: 7152290749099321672}
-  m_PrefabAsset: {fileID: 0}
 --- !u!43 &630897084
 Mesh:
   m_ObjectHideFlags: 0
@@ -8755,10 +8750,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5954857586775868351, guid: 7b95baf49a797d7468da1ea62624b4c1, type: 3}
-      propertyPath: RespawnPoint
-      value: 
-      objectReference: {fileID: 454833374}
     - target: {fileID: 6503243037977432900, guid: 7b95baf49a797d7468da1ea62624b4c1, type: 3}
       propertyPath: m_Name
       value: GameplayPlayer_pref
