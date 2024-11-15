@@ -47,7 +47,7 @@ public class CharacterMovementV3 : MonoBehaviour
     [Tooltip("Defines how much force does a jump get")]
         [SerializeField] float player_jump_force;
     [Tooltip("")]
-        [SerializeField] bool is_grounded;
+        [SerializeField] public bool is_grounded;
     [Tooltip("")]
         [SerializeField] public LayerMask define_ground;
     [Tooltip("")]
@@ -58,6 +58,8 @@ public class CharacterMovementV3 : MonoBehaviour
     [Space(10)]
         [SerializeField] float maximum_angle_slope;
         [SerializeField] RaycastHit slope_was_hit;
+        [SerializeField] float AirTime = 4;
+        [SerializeField] float AirTimeDelta;
 
     //Private values
     private float jumpCount = 0;
@@ -91,6 +93,10 @@ public class CharacterMovementV3 : MonoBehaviour
     {
         is_grounded = Physics.Raycast(transform.position, Vector3.down,0.2f,define_ground);
         if (is_grounded){jumpCount = player_jump_amount;}
+        if (AirTimeDelta <= Time.time){
+            rb.velocity = Vector3.zero;
+            GetComponent<PlayerHealth>().PlayerFellForTooLong = true;
+            }
 
         speedControl();
         PlayerInput();
@@ -109,11 +115,13 @@ public class CharacterMovementV3 : MonoBehaviour
             state = player_movement_state.crouching;
             player_top_speed = player_crouch_speed;
             player_current_acceleration = player_default_acceleration;
+            AirTimeDelta = Time.time + AirTime;
 
         }else if(is_grounded && Input.GetAxis("Accelerate") >= 0.5f){
             state = player_movement_state.sprinting;
             player_top_speed = player_sprint_speed;
             player_current_acceleration = player_sprint_acceleration;
+            AirTimeDelta = Time.time + AirTime;
 
         }
         else if(is_grounded)
@@ -121,6 +129,7 @@ public class CharacterMovementV3 : MonoBehaviour
             state = player_movement_state.walking;
             player_top_speed = player_dafault_speed;
             player_current_acceleration = player_default_acceleration;
+            AirTimeDelta = Time.time + AirTime;
 
         }
         else
@@ -128,7 +137,6 @@ public class CharacterMovementV3 : MonoBehaviour
             state = player_movement_state.air;
             player_top_speed = player_dafault_speed;
             player_current_acceleration = player_default_acceleration;
-            
         }
     }
 
