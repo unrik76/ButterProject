@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Callbacks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,7 +12,6 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] bool Invulnerable;
     public float InvulnerableTimeDelta;
     [SerializeField] Transform RespawnPoint;
-    [SerializeField] public bool PlayerFellForTooLong;
     void Start()
     {
         CurrentHealth = MaxHealth;
@@ -27,10 +25,7 @@ public class PlayerHealth : MonoBehaviour
             Invulnerable = false;
         }
         if (CurrentHealth <= 0){
-            RespawnSequance();
-        }
-        if (PlayerFellForTooLong == true){
-            RespawnSequance();
+            DeathSequance();
         }
     }
     private void OnCollisionEnter(Collision other){
@@ -53,7 +48,7 @@ public class PlayerHealth : MonoBehaviour
             /* If object that player is coliding with is marked to instantly kill
                 start death sequence */
             else if(other.gameObject.GetComponent<DealDamage>().InstaKill == true){
-                RespawnSequance();
+                DeathSequance();
             }else{
 
             }
@@ -67,8 +62,7 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    public void RespawnSequance(){
-        PlayerFellForTooLong = false;
+    public void DeathSequance(){
         transform.position = RespawnPoint.position;
         CurrentHealth = MaxHealth;
     }
