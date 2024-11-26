@@ -12,15 +12,27 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] bool Invulnerable;
     public float InvulnerableTimeDelta;
     [SerializeField] Transform RespawnPoint;
+
+    [SerializeField] float HeatLevel;
+    [SerializeField] float MaxHeat = 100;
+    [SerializeField] float HeatOriginDistrance; 
+    [SerializeField] Slider HeatBar;
     void Start()
     {
         CurrentHealth = MaxHealth;
+        HeatLevel = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
         HealthBar.value = CurrentHealth/MaxHealth;
+        HeatBar.value = HeatLevel/MaxHeat;
+        if(HeatLevel >= 10){
+            HeatLevel = 0;
+            CurrentHealth -= 1;
+        }
+
         if (InvulnerableTimeDelta <= Time.time){
             Invulnerable = false;
         }
@@ -59,6 +71,18 @@ public class PlayerHealth : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.GetComponent<SavePoint>() != null){
             RespawnPoint = other.gameObject.GetComponent<SavePoint>().thisTransform;
+        }
+    }
+    private void OnTriggerStay(Collider other) {
+        if (other.gameObject.GetComponent<HeatArea>() != null){
+            print("heat");
+            if (other.gameObject.GetComponent<SphereCollider>() != null){
+                HeatOriginDistrance = Vector3.Distance(other.gameObject.transform.position, transform.position);
+            }else if(other.gameObject.GetComponent<BoxCollider>() != null){
+                HeatOriginDistrance = Vector3.Distance(other.gameObject.transform.position, transform.position);
+            }
+            
+            HeatLevel += other.gameObject.GetComponent<HeatArea>().HeatStrenght / HeatOriginDistrance * Time.deltaTime;
         }
     }
 
