@@ -132,7 +132,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6981987}
   - component: {fileID: 6981986}
-  - component: {fileID: 6981988}
   m_Layer: 0
   m_Name: Heating Area
   m_TagString: Untagged
@@ -176,19 +175,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6981988
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6981985}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d2026c00556e6b469e122049a4841a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HeatStrenght: 1
 --- !u!43 &47156220
 Mesh:
   m_ObjectHideFlags: 0
@@ -2021,7 +2007,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1129233168}
   - component: {fileID: 1129233167}
-  - component: {fileID: 1129233166}
   m_Layer: 0
   m_Name: Heating Area 2
   m_TagString: Untagged
@@ -2029,19 +2014,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1129233166
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1129233165}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d2026c00556e6b469e122049a4841a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HeatStrenght: 1
 --- !u!65 &1129233167
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2431,17 +2403,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1179074292 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 230852523873628487, guid: 7b95baf49a797d7468da1ea62624b4c1, type: 3}
-  m_PrefabInstance: {fileID: 7152290749099321672}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1187959022
 GameObject:
   m_ObjectHideFlags: 0
@@ -7865,14 +7826,6 @@ PrefabInstance:
     - target: {fileID: 5188231824603137766, guid: 7b95baf49a797d7468da1ea62624b4c1, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5954857586775868351, guid: 7b95baf49a797d7468da1ea62624b4c1, type: 3}
-      propertyPath: HeatBar
-      value: 
-      objectReference: {fileID: 1179074292}
-    - target: {fileID: 5954857586775868351, guid: 7b95baf49a797d7468da1ea62624b4c1, type: 3}
-      propertyPath: HeatLevel
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6503243037977432900, guid: 7b95baf49a797d7468da1ea62624b4c1, type: 3}
       propertyPath: m_Name
