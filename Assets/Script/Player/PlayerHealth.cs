@@ -13,20 +13,19 @@ public class PlayerHealth : MonoBehaviour
     public float InvulnerableTimeDelta;
     [SerializeField] Transform RespawnPoint;
 
-    [SerializeField] float HeatLevel;
+    [SerializeField] float HeatLevel = 0;
     [SerializeField] float MaxHeat = 100;
     [SerializeField] float HeatOriginDistrance; 
     [SerializeField] Slider HeatBar;
     void Start()
     {
         CurrentHealth = MaxHealth;
-        HeatLevel = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        HealthBar.value = CurrentHealth/MaxHealth;
+        HealthBar.value = CurrentHealth/MaxHealth;   
         HeatBar.value = HeatLevel/MaxHeat;
         if(HeatLevel >= 10){
             HeatLevel = 0;
