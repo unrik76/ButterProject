@@ -5,4 +5,5 @@ using UnityEngine;
 public class HeatArea : MonoBehaviour
 {
     [SerializeField] public float HeatStrenght;
+    [SerializeField] public bool FlatIncresse;
 }

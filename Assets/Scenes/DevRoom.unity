@@ -7282,6 +7282,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1374985701051133900, guid: 1df3c0c8901cbb94bbf34100ef6743a9, type: 3}
+      propertyPath: HeatStrenght
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6308194189183444441, guid: 1df3c0c8901cbb94bbf34100ef6743a9, type: 3}
       propertyPath: m_Name
       value: Heating Area
@@ -7292,11 +7296,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6914896213103354417, guid: 1df3c0c8901cbb94bbf34100ef6743a9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6914896213103354417, guid: 1df3c0c8901cbb94bbf34100ef6743a9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 11.5
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6914896213103354417, guid: 1df3c0c8901cbb94bbf34100ef6743a9, type: 3}
       propertyPath: m_LocalRotation.w
