@@ -75,7 +75,7 @@ public class PlayerHealth : MonoBehaviour
     private void OnTriggerStay(Collider other) {
         if (other.gameObject.GetComponent<HeatArea>() != null){
 
-            HeatOriginDistrance = Vector3.Distance(other.gameObject.transform.position, transform.position);
+            HeatOriginDistrance = Vector3.Distance(other.gameObject.GetComponent<HeatArea>().TransformOrigin.position, transform.position);
             if(other.gameObject.GetComponent<HeatArea>().FlatIncresse != true){
                 HeatLevel += other.gameObject.GetComponent<HeatArea>().HeatStrenght / HeatOriginDistrance * Time.deltaTime;
             }else{
