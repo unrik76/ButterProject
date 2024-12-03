@@ -11,7 +11,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] float InvulnerableTime;
     [SerializeField] bool Invulnerable;
     public float InvulnerableTimeDelta;
-    [SerializeField] Transform RespawnPoint;
+    [SerializeField] public Transform RespawnPoint;
 
     [SerializeField] float HeatLevel = 0;
     [SerializeField] float MaxHeat = 100;
@@ -27,7 +27,7 @@ public class PlayerHealth : MonoBehaviour
     {
         HealthBar.value = CurrentHealth/MaxHealth;   
         HeatBar.value = HeatLevel/MaxHeat;
-        if(HeatLevel >= 10){
+        if(HeatLevel >= MaxHeat){
             HeatLevel = 0;
             CurrentHealth -= 1;
         }
