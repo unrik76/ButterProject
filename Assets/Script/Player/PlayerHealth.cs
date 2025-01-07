@@ -60,16 +60,18 @@ public class PlayerHealth : MonoBehaviour
                 start death sequence */
             else if(other.gameObject.GetComponent<DealDamage>().InstaKill == true){
                 DeathSequance();
-            }else{
-
             }
             
         }
+        
     }
 
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.GetComponent<SavePoint>() != null){
             RespawnPoint = other.gameObject.GetComponent<SavePoint>().thisTransform;
+        }
+        if(other.gameObject.GetComponent<HealthRecover>() != null){
+            CurrentHealth += other.gameObject.GetComponent<HealthRecover>().healthRecover;
         }
     }
     private void OnTriggerStay(Collider other) {
